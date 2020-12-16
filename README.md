@@ -28,6 +28,9 @@ To start the back-end server (which connects to MongoDB):
 
 ### `nodemon src/server.js`
 
+If nodemon is unavailable globally install it using 
+
+`npm install -g nodemon`
 
 
 ## Assignment Information
