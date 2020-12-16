@@ -17,7 +17,7 @@ class ProductForm extends Component {
         const target = e.target
         const value = target.value
         const name = target.name
-        console.log("Handling Change")
+        // console.log("Handling Change")
         this.setState((prevState) => {
             console.log(prevState.product)
             prevState.product[name] = value
@@ -26,11 +26,11 @@ class ProductForm extends Component {
     }
 
     handleSave(e) {
-        console.log("On Save------------------------------------")
+        // console.log("On Save------------------------------------")
         console.log(this.state.product)
         this.props.onSave(this.state.product);
         // reset the form values to blank after submitting
-        console.log("Resetting")
+        // console.log("Resetting")
         this.setState({
             product: Object.assign({}, RESET_VALUES), 
             errors: {}

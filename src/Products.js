@@ -26,12 +26,12 @@ class Products extends Component {
     }
 
     componentDidMount() {
-        console.log("This runs on component mount")
+        // console.log("This runs on component mount")
         fetch("http://localhost:3001/product/get")
         .then(data=>data.json())
         .then((data)=>{
-            console.log("Got data from MongoDB");
-            console.log(data);
+            // console.log("Got data from MongoDB");
+            // console.log(data);
             this.setState({products: data})
         });
     }
@@ -44,14 +44,14 @@ class Products extends Component {
         if (!productAdd.productid) {
             productAdd.productid = new Date().getTime()
         }
-        console.log("Handling Save")
-        console.log("Printing products")
-        console.log(productAdd)
+        // console.log("Handling Save")
+        // console.log("Printing products")
+        // console.log(productAdd)
         let newproduct = {
             id: productAdd.productid,
             product: productAdd
         }
-        console.log(newproduct)
+        // console.log(newproduct)
 
         const requestOptions = {
             method: 'POST',
@@ -61,8 +61,8 @@ class Products extends Component {
         fetch("http://localhost:3001/product/create", requestOptions)
         // .then(data=>data.json())
         .then((data)=>{
-            console.log("Creating a new product");
-            console.log(data);
+            // console.log("Creating a new product");
+            // console.log(data);
             this.setState((prevState) => {
                 let products = prevState.products
                 products[productAdd.productid] = newproduct
@@ -78,15 +78,15 @@ class Products extends Component {
     //     console.log(productId);
     // }
     handleDestroy(productId) {
-        console.log("Deleting the below productid")
-        console.log(productId);
+        // console.log("Deleting the below productid")
+        // console.log(productId);
         const requestOptions = {
             method: 'DELETE',
         };
         fetch("http://localhost:3001/product/delete/" + productId, requestOptions)
         .then((result) => {
             // do what you want with the response here
-            console.log(result);
+            // console.log(result);
             this.setState((prevState) => {
                 let products = prevState.products
                 console.log(products);
@@ -97,8 +97,8 @@ class Products extends Component {
                         newproducts.push(item);
                     }
                 })
-                console.log("After deleting");
-                console.log(newproducts);
+                // console.log("After deleting");
+                // console.log(newproducts);
                 products = newproducts
                 return { products }
             });
@@ -107,9 +107,9 @@ class Products extends Component {
     }
 
     render () {
-        console.log("Rendering");
-        console.log("Printing the state object here");
-        console.log(this.state.products)
+        // console.log("Rendering");
+        // console.log("Printing the state object here");
+        // console.log(this.state.products)
         return (
             <div>
                 <h1>My Inventory</h1>
