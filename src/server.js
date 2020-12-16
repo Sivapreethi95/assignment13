@@ -26,6 +26,8 @@ var PRODUCTS = mongoose.model('product', {
 
 app.use(express.static(__dirname))
 
+
+// Gets the list of all the products from MongoDB
 app.get('/product/get', (req, res) => {
     console.log("hello")
 
@@ -36,6 +38,8 @@ app.get('/product/get', (req, res) => {
     // res.send('hi')
 })
 
+
+// Creates a new product and stores it in MongoDB
 app.post('/product/create', jsonParser, (req, res) => {
     // console.log(req)
     console.log(req.body)
@@ -52,6 +56,7 @@ app.post('/product/create', jsonParser, (req, res) => {
     res.send("YOYOYOYOYOYOYOYOYO")
 })
 
+// Deletes a product with a specific ID from MongoDB
 app.delete('/product/delete/:deleteid', (req, res) => {
     // console.log(req)
     console.log(req.body)
@@ -67,6 +72,26 @@ app.delete('/product/delete/:deleteid', (req, res) => {
     console.log("deleted da macha")
     res.send("YOYOYOYOYOYOYOYOYO")
 })
+
+app.put('/product/update/:updateid', jsonParser, (req, res) => {
+    console.log("Received update request")
+    console.log(req.body)
+    console.log(req.params.updateid)
+    console.log('entered')
+    PRODUCTS.updateOne({id: req.params.updateid}, {$set : { product: req.body}}, (err, result) => {
+        if (err) {
+            console.log("There is an error")
+        } else {
+            console.log("no error in update all good")
+        }
+    })
+    console.log("updated da macha")
+    res.send("YOYOYOYOYOYOYOYOYO")
+})
+
+
+
+
 var server = app.listen(3001, () => {
     console.log('server', server.address().port)
 })
